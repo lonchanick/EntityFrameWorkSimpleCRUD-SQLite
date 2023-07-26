@@ -1,4 +1,5 @@
-﻿using Spectre.Console;
+﻿using PlayingSpectre.Models;
+using Spectre.Console;
 
 namespace PlayingSpectre;
 

@@ -1,4 +1,5 @@
-﻿using Spectre.Console;
+﻿using PlayingSpectre.Models;
+using Spectre.Console;
 
 namespace PlayingSpectre;
 
@@ -15,7 +16,7 @@ internal class UserInterface
 		foreach (var coffe in coffees)
 		{
 			table.AddRow
-				(coffe.Id.ToString(),
+				(coffe.CoffeeId.ToString(),
 				coffe.Name, coffe.Price.ToString(),
 				coffe.IsCoffeeOfTheMonth.ToString());
 		}
@@ -34,7 +35,7 @@ internal class UserInterface
 
 	public static void ShowSingleCoffeeDetails(Coffee coffee, string optional="")
 	{
-		var panel = new Panel($@"Id: {coffee.Id}
+		var panel = new Panel($@"Id: {coffee.CoffeeId}
 Name: {coffee.Name}
 Pricer: {coffee.Price}
 Is Coffee of the month?: {coffee.IsCoffeeOfTheMonth}");
