@@ -16,23 +16,27 @@ public class Coffee
     [Required]
     public decimal Price { get; set; }
     public bool IsCoffeeOfTheMonth { get; set; }
+    
+    [ForeignKey(nameof(CategoryId))]
+    public int CategoryId { get; set; }
 
-    [ForeignKey(nameof(Category))]
-    public int Category { get; set; }
+	public Category Category { get; set; }
 
 
-
-    public override string ToString()
+	public override string ToString()
     {
         return CoffeeId.ToString() + " " + Name;
     }
-	public Coffee()
-	{
-	}
+
 	public Coffee(string? name, decimal price, bool isCoffeeOfTheMonth)
 	{
 		Name = name;
 		Price = price;
 		IsCoffeeOfTheMonth = isCoffeeOfTheMonth;
+        //Category = category;
+	}
+
+	public Coffee()
+	{
 	}
 }

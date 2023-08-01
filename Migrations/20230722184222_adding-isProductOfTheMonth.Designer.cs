@@ -9,7 +9,7 @@ using PlayingSpectre;
 
 namespace PlayingSpectre.Migrations
 {
-    [DbContext(typeof(CoffeeRepository))]
+    [DbContext(typeof(CoffeeDBcontext))]
     [Migration("20230722184222_adding-isProductOfTheMonth")]
     partial class addingisProductOfTheMonth
     {

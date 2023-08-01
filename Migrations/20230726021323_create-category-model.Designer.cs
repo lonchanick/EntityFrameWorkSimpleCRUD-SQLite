@@ -9,7 +9,7 @@ using PlayingSpectre;
 
 namespace PlayingSpectre.Migrations
 {
-    [DbContext(typeof(CoffeeRepository))]
+    [DbContext(typeof(CoffeeDBcontext))]
     [Migration("20230726021323_create-category-model")]
     partial class createcategorymodel
     {

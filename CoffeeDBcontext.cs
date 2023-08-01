@@ -3,9 +3,10 @@ using PlayingSpectre.Models;
 
 namespace PlayingSpectre;
 
-internal class CoffeeRepository : DbContext
+internal class CoffeeDBcontext : DbContext
 {
 	public DbSet<Coffee> Coffees { get; set; }
+	public DbSet<Category> Categories { get; set; }
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	=>
 		optionsBuilder.UseSqlite($"Data Source =  CoffeStore.db");
