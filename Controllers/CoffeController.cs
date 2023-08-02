@@ -34,21 +34,29 @@ internal class CoffeController
         return coffees;
     }
 
-    internal static int Update(Coffee coffee)
-    {
-        //var coffee = UserInterface.UpdateInterface();
-        using var dbContext = new CoffeeDBcontext();
-        dbContext.Update(coffee);
-        return dbContext.SaveChanges();
+	internal static int Update(Coffee coffee)
+	{
+		//var coffee = UserInterface.UpdateInterface();
+		using var dbContext = new CoffeeDBcontext();
+		dbContext.Update(coffee);
+		return dbContext.SaveChanges();
 
-    }
+	}
+	internal static Coffee GetCoffeeById(int id)
+	{
+		using var db = new CoffeeDBcontext();
+        var coffee = db.Coffees.First(x => x.CoffeeId == id);
+		return coffee;
 
-    public static void SuccefullOrUnsuccefullMessage(int status, string message, Coffee coffee)
+	}
+
+	public static void SuccefullOrUnsuccefullMessage(int status, string message, Coffee coffee)
     {
         if (status > 0)
         {
             Console.Clear();
-            CoffeeInterface.ShowSingleCoffeeDetails(coffee, message);
+            //esto es true si es para imprimir un cafe nuevo que se esta guardando
+            CoffeeInterface.ShowSingleCoffeeDetails(coffee, message, true);
         }
         else
         {

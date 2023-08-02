@@ -40,15 +40,48 @@ internal class CoffeeInterface
 		return option;
 	}
 	//shows a single coffe details in a pretty way
-	public static void ShowSingleCoffeeDetails(Coffee coffee, string optional = "")
+	public static void ShowSingleCoffeeDetails(Coffee coffee, string optional = "", bool newCoffee = false)
 	{
+		//si newCoffee es true se usan las instrucciones para imprimir solo el 
+		//id de la categoria que se le asigno al cafe nuevo
+		if(newCoffee) 
+		{
 		var panel = new Panel($@"Id: {coffee.CoffeeId}
 Name: {coffee.Name}
 Price: {coffee.Price}
 Category: {coffee.CategoryId}
 Is Coffee of the month?: {coffee.IsCoffeeOfTheMonth}");
 
-		if (optional == "")
+			if (optional == "")
+				panel.Header = new PanelHeader("Coffee Details");
+			else
+				panel.Header = new PanelHeader(optional);
+
+			panel.Padding = new Padding(1, 1, 1, 1);
+			AnsiConsole.Write(panel);
+			Console.WriteLine("Press any key to continue ...");
+			Console.ReadLine();
+		}
+		else
+		{
+			var panel = new Panel($@"Id: {coffee.CoffeeId}
+Name: {coffee.Name}
+Price: {coffee.Price}
+Category: {coffee.Category.categoryName}
+Is Coffee of the month?: {coffee.IsCoffeeOfTheMonth}");
+
+			if (optional == "")
+				panel.Header = new PanelHeader("Coffee Details");
+			else
+				panel.Header = new PanelHeader(optional);
+
+			panel.Padding = new Padding(1, 1, 1, 1);
+			AnsiConsole.Write(panel);
+			Console.WriteLine("Press any key to continue ...");
+			Console.ReadLine();
+		}
+
+		/*if (optional == "")
 			panel.Header = new PanelHeader("Coffee Details");
 		else
 			panel.Header = new PanelHeader(optional);
@@ -56,7 +89,7 @@ Is Coffee of the month?: {coffee.IsCoffeeOfTheMonth}");
 		panel.Padding = new Padding(1, 1, 1, 1);
 		AnsiConsole.Write(panel);
 		Console.WriteLine("Press any key to continue ...");
-		Console.ReadLine();
+		Console.ReadLine();*/
 	}
 
 	public static Coffee UpdateInterface(Coffee coffeeToUpdate)
@@ -84,15 +117,18 @@ Is Coffee of the month?: {coffee.IsCoffeeOfTheMonth}");
 
 	public static Coffee AddCoffee()
 	{
-		Coffee coffee = new();
-		coffee.Name = AnsiConsole.Ask<string>("Name: ");
-		coffee.Price= AnsiConsole.Ask<decimal>("Price: ");
-		coffee.IsCoffeeOfTheMonth = AnsiConsole.Confirm("Is Coffe Of the Month?")
+		Coffee coffee = new()
+		{
+			Name = AnsiConsole.Ask<string>("Name: "),
+			Price = AnsiConsole.Ask<decimal>("Price: "),
+			IsCoffeeOfTheMonth = AnsiConsole.Confirm("Is Coffe Of the Month?")
 			? true
-			: false;
+			: false
+		};
 		//coffee.CategoryId = 1;
 		var category = CategoryMenuPickable();
 		coffee.CategoryId = category.categoryId;
+		//coffee.Category = category;
 
 		return coffee;
 	}

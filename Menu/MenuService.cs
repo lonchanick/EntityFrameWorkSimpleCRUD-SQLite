@@ -19,7 +19,7 @@ public class Main
 
         while (true)
         {
-            AnsiConsole.Write(new FigletText("Coffe Menu!").LeftJustified().Color(Color.Blue));
+            AnsiConsole.Write(new FigletText("Coffee Menu!").LeftJustified().Color(Color.Blue));
             var options = new SelectionPrompt<MenuOptions>();
             options.AddChoices
                 (
