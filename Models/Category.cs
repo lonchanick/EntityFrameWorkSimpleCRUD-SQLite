@@ -10,7 +10,7 @@ public class Category
 	[Required]
 	public string categoryName { get; set; }
 
-	List<Coffee> Coffees { get; set; }
+	public List<Coffee> Coffees { get; set; }
 
 
 

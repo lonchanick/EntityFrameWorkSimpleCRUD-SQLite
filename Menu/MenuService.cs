@@ -6,7 +6,7 @@ namespace PlayingSpectre.Menu;
 
 public class Main
 {
-    internal static void Menu()
+    internal static void MainMenu()
     {
         //animated fake loading 
         AnsiConsole.Status()
@@ -16,74 +16,138 @@ public class Main
                 Thread.Sleep(800);
             });
 
-
-        while (true)
+        bool AppIsRunningYet = true;
+        while (AppIsRunningYet)
         {
             AnsiConsole.Write(new FigletText("Coffee Menu!").LeftJustified().Color(Color.Blue));
-            var options = new SelectionPrompt<MenuOptions>();
+            var options = new SelectionPrompt<MainMenuOptions>();
             options.AddChoices
                 (
-                    MenuOptions.ADD_Category,
-                    MenuOptions.VIEWALL_Categories,
-                    //MenuOptions.VIEW_Category,
-                    MenuOptions.DELETE_Category,
-                    //MenuOptions.UPDATE_Category,
-					MenuOptions.ADD_Coffee,
-                    MenuOptions.VIEW_Coffee,
-                    MenuOptions.VIEWALL_Coffee,
-                    MenuOptions.DELETE_Coffee,
-                    MenuOptions.UPDATE_Coffee,
-                    MenuOptions.QUIT
+                    MainMenuOptions.Manage_Categories,
+					MainMenuOptions.Manage_Coffees,
+					MainMenuOptions.QUIT
                 );
             var r = AnsiConsole.Prompt(options);
 
             switch (r)
             {
-				case MenuOptions.ADD_Category:
-					CategoryServices.AddCategory();
-					Console.Clear();
-					break;
-
-				case MenuOptions.VIEWALL_Categories:
-					CategoryServices.ShowCategories();
-					Console.Clear();
-					break;
-
-				case MenuOptions.DELETE_Category:
-					CategoryServices.DeleteCategory();
-					Console.Clear();
-					break;
-
-				case MenuOptions.ADD_Coffee:
-					CoffeeServices.AddCoffee();
-					Console.Clear();
-					break;
-
-				case MenuOptions.VIEW_Coffee:
-					CoffeeServices.ViewCoffee();
+                case MainMenuOptions.Manage_Categories:
+					CategoryMenu();
 					Console.Clear();
                     break;
 
-                case MenuOptions.VIEWALL_Coffee:
-					CoffeeServices.ViewAllCoffees();
-					Console.Clear();
-                    break;
-
-                case MenuOptions.DELETE_Coffee:
-					CoffeeServices.RemoveCoffee();
-					Console.Clear();
-                    break;
-
-                case MenuOptions.UPDATE_Coffee:
-                    CoffeeServices.UpdateCoffee();
+                case MainMenuOptions.Manage_Coffees:
+					CoffeeMenu();
                     Console.Clear();
                     break;
 
-                case MenuOptions.QUIT:
-                    return;
+                case MainMenuOptions.QUIT:
+                    AppIsRunningYet=false;
+                    break;
             }
         }
 
     }
+
+    internal static void CategoryMenu()
+    {
+		Console.Clear();
+		bool AppIsRunningYet = true;
+		while (AppIsRunningYet)
+		{
+			AnsiConsole.Write(new FigletText("Category Menu!").LeftJustified().Color(Color.Blue));
+			var options = new SelectionPrompt<CategoryOptions>();
+			options.AddChoices
+				(
+					CategoryOptions.ADD_Category,
+					CategoryOptions.VIEWALL_Categories,
+					CategoryOptions.VIEW_Category,
+					CategoryOptions.DELETE_Category,
+					//CategoryOptions.UPDATE_Category,
+					CategoryOptions.BACK
+				);
+			
+			var r = AnsiConsole.Prompt(options);
+			switch (r)
+			{
+				case CategoryOptions.ADD_Category:
+					CategoryServices.AddCategory();
+					Console.Clear();
+					break;
+
+				case CategoryOptions.VIEW_Category:
+					CategoryServices.GetCategory();
+					Console.Clear();
+					break;
+
+				case CategoryOptions.VIEWALL_Categories:
+					CategoryServices.ShowCategories();
+					Console.Clear();
+					break;
+
+				case CategoryOptions.DELETE_Category:
+					CategoryServices.DeleteCategory();
+					Console.Clear();
+					break;
+
+				case CategoryOptions.BACK:
+					AppIsRunningYet = false;
+					break;
+			}
+		}
+	}
+
+	internal static void CoffeeMenu()
+	{
+		Console.Clear();
+		bool AppIsRunningYet = true;
+		while (AppIsRunningYet)
+		{
+			AnsiConsole.Write(new FigletText("Products Menu!").LeftJustified().Color(Color.Blue));
+			var options = new SelectionPrompt<CoffeeOptions>();
+			options.AddChoices
+				(
+					CoffeeOptions.ADD_Coffee,
+					CoffeeOptions.VIEW_Coffee,
+					CoffeeOptions.VIEWALL_Coffee,
+					CoffeeOptions.DELETE_Coffee,
+					CoffeeOptions.UPDATE_Coffee,
+					CoffeeOptions.BACK
+				);
+			var r = AnsiConsole.Prompt(options);
+
+			switch (r)
+			{
+				case CoffeeOptions.ADD_Coffee:
+					CoffeeServices.AddCoffee();
+					Console.Clear();
+					break;
+
+				case CoffeeOptions.VIEW_Coffee:
+					CoffeeServices.ViewCoffee();
+					Console.Clear();
+					break;
+
+				case CoffeeOptions.VIEWALL_Coffee:
+					CoffeeServices.ViewAllCoffees();
+					Console.Clear();
+					break;
+
+				case CoffeeOptions.DELETE_Coffee:
+					CoffeeServices.RemoveCoffee();
+					Console.Clear();
+					break;
+
+				case CoffeeOptions.UPDATE_Coffee:
+					CoffeeServices.UpdateCoffee();
+					Console.Clear();
+					break;
+
+				case CoffeeOptions.BACK:
+					AppIsRunningYet = false;
+					break;
+			}
+		}
+	}
 
 }

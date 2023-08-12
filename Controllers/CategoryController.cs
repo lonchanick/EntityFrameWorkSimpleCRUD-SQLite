@@ -1,4 +1,5 @@
-﻿using PlayingSpectre.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using PlayingSpectre.Models;
 
 namespace PlayingSpectre.Controllers;
 
@@ -15,7 +16,9 @@ internal class CategoryController
 	internal static List<Category> GetCategories()
 	{
 		using var db = new CoffeeDBcontext();
-		var categories = db.Categories.ToList();
+		var categories = db.Categories
+			.Include(x => x.Coffees)
+			.ToList();
 		return categories;
 	}
 

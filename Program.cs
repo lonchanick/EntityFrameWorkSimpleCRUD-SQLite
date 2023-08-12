@@ -2,4 +2,4 @@
 using PlayingSpectre.Menu;
 using PlayingSpectre.UserInterfaces;
 
-Main.Menu();
+Main.MainMenu();

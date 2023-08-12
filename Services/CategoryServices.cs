@@ -22,4 +22,12 @@ internal class CategoryServices
 		var category = CategoryInterface.CategoryPickableMenuOptions(categories);
 		CategoryController.DeleteCateogry(category);
 	}
+
+	internal static void GetCategory()
+	{
+		var categories = CategoryController.GetCategories();
+		var category = CategoryInterface.CategoryPickableMenuOptions(categories);
+		Console.WriteLine("  Category: "+category.categoryName);
+		CoffeeInterface.PrintCoffeeList(category.Coffees);
+	}
 }
