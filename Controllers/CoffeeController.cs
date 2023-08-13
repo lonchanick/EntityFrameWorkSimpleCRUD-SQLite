@@ -5,7 +5,7 @@ using Spectre.Console;
 
 namespace PlayingSpectre.Controllers;
 
-internal class CoffeController
+internal class CoffeeController
 {
     internal static int Add(Coffee coffee)
     {

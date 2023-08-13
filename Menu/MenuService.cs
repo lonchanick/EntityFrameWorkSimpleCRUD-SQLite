@@ -19,12 +19,13 @@ public class Main
         bool AppIsRunningYet = true;
         while (AppIsRunningYet)
         {
-            AnsiConsole.Write(new FigletText("Coffee Menu!").LeftJustified().Color(Color.Blue));
+            AnsiConsole.Write(new FigletText("Main Menu!").LeftJustified().Color(Color.Blue));
             var options = new SelectionPrompt<MainMenuOptions>();
             options.AddChoices
                 (
                     MainMenuOptions.Manage_Categories,
 					MainMenuOptions.Manage_Coffees,
+					MainMenuOptions.Manage_Order,
 					MainMenuOptions.QUIT
                 );
             var r = AnsiConsole.Prompt(options);
@@ -36,12 +37,16 @@ public class Main
 					Console.Clear();
                     break;
 
-                case MainMenuOptions.Manage_Coffees:
+				case MainMenuOptions.Manage_Coffees:
 					CoffeeMenu();
-                    Console.Clear();
-                    break;
+					Console.Clear();
+					break;
+				case MainMenuOptions.Manage_Order:
+					OrderMenu();
+					Console.Clear();
+					break;
 
-                case MainMenuOptions.QUIT:
+				case MainMenuOptions.QUIT:
                     AppIsRunningYet=false;
                     break;
             }
@@ -49,7 +54,9 @@ public class Main
 
     }
 
-    internal static void CategoryMenu()
+
+
+	internal static void CategoryMenu()
     {
 		Console.Clear();
 		bool AppIsRunningYet = true;
@@ -103,7 +110,7 @@ public class Main
 		bool AppIsRunningYet = true;
 		while (AppIsRunningYet)
 		{
-			AnsiConsole.Write(new FigletText("Products Menu!").LeftJustified().Color(Color.Blue));
+			AnsiConsole.Write(new FigletText("Coffee Menu!").LeftJustified().Color(Color.Blue));
 			var options = new SelectionPrompt<CoffeeOptions>();
 			options.AddChoices
 				(
@@ -149,5 +156,40 @@ public class Main
 			}
 		}
 	}
+
+	private static void OrderMenu()
+	{
+		Console.Clear();
+		bool AppIsRunningYet = true;
+		while (AppIsRunningYet)
+		{
+			AnsiConsole.Write(new FigletText("Orders Menu!").LeftJustified().Color(Color.Blue));
+			var options = new SelectionPrompt<OrderOptions>();
+			options.AddChoices
+				(
+					OrderOptions.NewOrder,
+					OrderOptions.ViewOrders,
+					OrderOptions.BACK
+				);
+			var r = AnsiConsole.Prompt(options);
+
+			switch (r)
+			{
+				case OrderOptions.NewOrder:
+					OrderService.NewOrder();
+					Console.Clear();
+					break;
+				case OrderOptions.ViewOrders:
+					OrderService.ViewOrders();
+					Console.Clear();
+					break;
+
+				case OrderOptions.BACK:
+					AppIsRunningYet = false;
+					break;
+			}
+		}
+	}
+
 
 }

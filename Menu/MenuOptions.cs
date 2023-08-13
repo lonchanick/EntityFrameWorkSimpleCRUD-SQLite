@@ -2,6 +2,7 @@
 {
 	Manage_Categories,
 	Manage_Coffees,
+	Manage_Order,
 	QUIT
 }
 
@@ -22,5 +23,12 @@ public enum CoffeeOptions
 	VIEWALL_Coffee,
 	DELETE_Coffee,
 	UPDATE_Coffee,
+	BACK,
+}
+
+public enum OrderOptions
+{
+	NewOrder,
+	ViewOrders,
 	BACK,
 }

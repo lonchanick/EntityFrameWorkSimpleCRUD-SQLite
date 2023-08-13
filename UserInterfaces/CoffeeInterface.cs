@@ -6,6 +6,7 @@ namespace PlayingSpectre.UserInterfaces;
 
 internal class CoffeeInterface
 {
+	//prints a table with all coffees available
 	internal static void PrintCoffeeList(List<Coffee> coffees)
 	{
 		var table = new Table();
