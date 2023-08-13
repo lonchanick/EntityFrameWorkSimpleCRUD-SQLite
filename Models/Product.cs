@@ -7,7 +7,7 @@ namespace PlayingSpectre.Models;
 
 [Index(nameof(Name), IsUnique = true)]
 
-public class Coffee
+public class Product
 {
     [Key]
     public int CoffeeId { get; set; }
@@ -28,7 +28,7 @@ public class Coffee
         return CoffeeId.ToString() + " " + Name;
     }
 
-	public Coffee(string? name, decimal price, bool isCoffeeOfTheMonth)
+	public Product(string? name, decimal price, bool isCoffeeOfTheMonth)
 	{
 		Name = name;
 		Price = price;
@@ -36,7 +36,7 @@ public class Coffee
         //Category = category;
 	}
 
-	public Coffee()
+	public Product()
 	{
 	}
 }

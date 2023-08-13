@@ -5,7 +5,7 @@ namespace PlayingSpectre;
 
 internal class CoffeeDBcontext : DbContext
 {
-	public DbSet<Coffee> Coffees { get; set; }
+	public DbSet<Product> Coffees { get; set; }
 	public DbSet<Category> Categories { get; set; }
 	public DbSet<Order> Orders { get; set; }
 	public DbSet<OrderProd> OrderProds { get; set; }

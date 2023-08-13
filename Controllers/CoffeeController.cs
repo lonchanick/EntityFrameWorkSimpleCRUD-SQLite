@@ -7,7 +7,7 @@ namespace PlayingSpectre.Controllers;
 
 internal class CoffeeController
 {
-    internal static int Add(Coffee coffee)
+    internal static int Add(Product coffee)
     {
         using var dbRepository = new CoffeeDBcontext();
         dbRepository.Add(coffee);
@@ -17,7 +17,7 @@ internal class CoffeeController
 
     }
 
-    internal static int Remove(Coffee coffee)
+    internal static int Remove(Product coffee)
     {
         using var contextDb = new CoffeeDBcontext();
         contextDb.Remove(coffee);
@@ -25,7 +25,7 @@ internal class CoffeeController
 
     }
 
-    internal static List<Coffee> GetAllCoffees()
+    internal static List<Product> GetAllCoffees()
     {
         using var dbContext = new CoffeeDBcontext();
         var coffees = dbContext.Coffees
@@ -34,7 +34,7 @@ internal class CoffeeController
         return coffees;
     }
 
-	internal static int Update(Coffee coffee)
+	internal static int Update(Product coffee)
 	{
 		//var coffee = UserInterface.UpdateInterface();
 		using var dbContext = new CoffeeDBcontext();
@@ -42,7 +42,7 @@ internal class CoffeeController
 		return dbContext.SaveChanges();
 
 	}
-	internal static Coffee GetCoffeeById(int id)
+	internal static Product GetCoffeeById(int id)
 	{
 		using var db = new CoffeeDBcontext();
         var coffee = db.Coffees.First(x => x.CoffeeId == id);
@@ -50,7 +50,7 @@ internal class CoffeeController
 
 	}
 
-	public static void SuccefullOrUnsuccefullMessage(int status, string message, Coffee coffee)
+	public static void SuccefullOrUnsuccefullMessage(int status, string message, Product coffee)
     {
         if (status > 0)
         {

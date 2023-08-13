@@ -7,7 +7,7 @@ namespace PlayingSpectre.UserInterfaces;
 internal class CoffeeInterface
 {
 	//prints a table with all coffees available
-	internal static void PrintCoffeeList(List<Coffee> coffees)
+	internal static void PrintCoffeeList(List<Product> coffees)
 	{
 		var table = new Table();
 		table.AddColumn("Id");
@@ -32,16 +32,16 @@ internal class CoffeeInterface
 
 	}
 	//present a complete list of coffees as a pickable menu option
-	public static Coffee CoffeeListMenu(List<Coffee> coffees)
+	public static Product CoffeeListMenu(List<Product> coffees)
 	{
-		var option = AnsiConsole.Prompt(new SelectionPrompt<Coffee>()
+		var option = AnsiConsole.Prompt(new SelectionPrompt<Product>()
 			.Title("Choose any Coffee")
 			.AddChoices(coffees));
 
 		return option;
 	}
 	//shows a single coffe details in a pretty way
-	public static void ShowSingleCoffeeDetails(Coffee coffee, string optional = "", bool newCoffee = false)
+	public static void ShowSingleCoffeeDetails(Product coffee, string optional = "", bool newCoffee = false)
 	{
 		//si newCoffee es true se usan las instrucciones para imprimir solo el 
 		//id de la categoria que se le asigno al cafe nuevo
@@ -93,7 +93,7 @@ Is Coffee of the month?: {coffee.IsCoffeeOfTheMonth}");
 		Console.ReadLine();*/
 	}
 
-	public static Coffee UpdateInterface(Coffee coffeeToUpdate)
+	public static Product UpdateInterface(Product coffeeToUpdate)
 	{
 		coffeeToUpdate.Name = AnsiConsole.Confirm("Wanna Update name? ")
 			? AnsiConsole.Ask<string>("Enter new name: ")
@@ -116,9 +116,9 @@ Is Coffee of the month?: {coffee.IsCoffeeOfTheMonth}");
 		return coffeeToUpdate;
 	}
 
-	public static Coffee AddCoffee()
+	public static Product AddCoffee()
 	{
-		Coffee coffee = new()
+		Product coffee = new()
 		{
 			Name = AnsiConsole.Ask<string>("Name: "),
 			Price = AnsiConsole.Ask<decimal>("Price: "),

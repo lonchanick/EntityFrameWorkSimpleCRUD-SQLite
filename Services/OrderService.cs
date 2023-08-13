@@ -42,11 +42,23 @@ public class OrderService
 
 	}
 
+	//internal static void ViewOrders()
+	//{
+	//	var orders = OrderController.GetOrders();
+	//	OrderInterface.PrintOrderTable(orders);
+	//}
 	internal static void ViewOrders()
 	{
-		var order = OrderController.GetOrders();
-		OrderInterface.PrintOrderTable(order);
-		Console.ReadLine();
+		var orders = OrderController.GetOrdersJoinedData();
+		//foreach (var order in orders)
+		//{
+		//	order.OrderProd.
+		//	foreach (var orderProd in order.OrderProd.)
+		//	{
+
+		//	}
+		//}
+		Console.WriteLine("");
 	}
 
 }
