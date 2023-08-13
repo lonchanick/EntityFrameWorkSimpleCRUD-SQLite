@@ -29,15 +29,4 @@ public class OrderController
 		return db.Orders.ToList();
 	}
 
-	internal static List<Order> GetOrdersJoinedData()
-	{
-		using var db = new CoffeeDBcontext();
-		var orders = db.Orders
-			.Include(op => op.OrderProd)
-			.ThenInclude(p => p.Coffee)
-			.ThenInclude(c => c.Category)
-			.ToList();
-
-		return orders;
-	}
 }
