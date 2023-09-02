@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlayingSpectre;
 
@@ -10,9 +11,11 @@ using PlayingSpectre;
 namespace PlayingSpectre.Migrations
 {
     [DbContext(typeof(CoffeeDBcontext))]
-    partial class CoffeRepositoryModelSnapshot : ModelSnapshot
+    [Migration("20230902192014_fixing-orderProd-and-Order-models")]
+    partial class fixingorderProdandOrdermodels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.9");
@@ -40,6 +43,9 @@ namespace PlayingSpectre.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("OrderProdId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("TEXT");

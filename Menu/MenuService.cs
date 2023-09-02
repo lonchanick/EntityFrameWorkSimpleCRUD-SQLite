@@ -54,8 +54,6 @@ public class Main
 
     }
 
-
-
 	internal static void CategoryMenu()
     {
 		Console.Clear();

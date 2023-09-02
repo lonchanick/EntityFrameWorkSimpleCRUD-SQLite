@@ -12,7 +12,7 @@ public class Product
     [Key]
     public int CoffeeId { get; set; }
     [Required]
-    public string? Name { get; set; } /*= string.Empty;*/
+    public string? Name { get; set; }
     [Required]
     public decimal Price { get; set; }
     public bool IsCoffeeOfTheMonth { get; set; }
@@ -21,12 +21,7 @@ public class Product
     public int CategoryId { get; set; }
 
 	public Category Category { get; set; }
-
-
-	public override string ToString()
-    {
-        return CoffeeId.ToString() + " " + Name;
-    }
+    public List<OrderProd> OrderProd { get; set; }
 
 	public Product(string? name, decimal price, bool isCoffeeOfTheMonth)
 	{
@@ -36,7 +31,9 @@ public class Product
         //Category = category;
 	}
 
-	public Product()
-	{
-	}
+	public Product(){}
+    public override string ToString()
+    {
+        return CoffeeId.ToString() + " " + Name;
+    }
 }

@@ -14,13 +14,24 @@ public class OrderController
 
 		return status;
 	}
+	/*internal static int Add(Order orders)
+    {
+        using var db = new CoffeeDBcontext();
+        //db.Add(orders);
+        db.OrderProds.AddRange(orders); //¿?
+        var status = db.SaveChanges();
 
-	internal static OrderProd GetOrderById(int id)
+        return status;
+    }*/
+
+
+	internal static Order GetOrderById(int id)
 	{
 		using var db = new CoffeeDBcontext();
-		var orderProd = db.OrderProds.FirstOrDefault(orderP => orderP.Id == id);
+		//var orderProd = db.OrderProds.FirstOrDefault(orderP => orderP.Id == id);
+        var order = db.Orders.FirstOrDefault(ord => ord.Id == id);
 		
-		return orderProd;
+		return order;
 	}
 
 	internal static List<Order> GetOrders()

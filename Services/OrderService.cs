@@ -35,17 +35,26 @@ public class OrderService
 		}
 
 		if (OrderController.Add(orderProd) > 0)
+		{
 			Console.WriteLine("Order Details");
+			Console.WriteLine("OrderId: " + order.Id);
+			Console.WriteLine("Total Amount: " + order.TotalAmount);
+        }
 		else
 			Console.WriteLine("Error");
-		Thread.Sleep(800);
+
+		//Thread.Sleep(800);
+		Console.ReadLine();
 
 	}
 
 	internal static void ViewOrders()
 	{
-		var orders = OrderController.GetOrders();
-		OrderInterface.PrintOrderTable(orders);
+        var orderId = AnsiConsole.Ask<int>("Order Id?: ");
+		var order = OrderController.GetOrderById(orderId);
+		//OrderInterface.PrintOrderTable(orders);
+		Console.WriteLine(order);
+		Console.ReadLine();
 	}
 
 }
