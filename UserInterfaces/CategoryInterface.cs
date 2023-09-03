@@ -1,4 +1,5 @@
-﻿using PlayingSpectre.Models;
+﻿using PlayingSpectre.Controllers;
+using PlayingSpectre.Models;
 using Spectre.Console;
 
 namespace PlayingSpectre.UserInterfaces;
@@ -39,6 +40,14 @@ internal class CategoryInterface
 
 		return option;
 	}
+
+    public static Category CategoryMenuPickable()
+    {
+        var categories = CategoryController.GetCategories();
+        var category = CategoryPickableMenuOptions(categories);
+
+        return category;
+    }
 
 
 }

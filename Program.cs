@@ -3,3 +3,4 @@ using PlayingSpectre.Menu;
 using PlayingSpectre.UserInterfaces;
 
 Main.MainMenu();
+

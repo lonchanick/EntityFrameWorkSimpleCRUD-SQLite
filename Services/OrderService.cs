@@ -7,54 +7,76 @@ namespace PlayingSpectre.Services;
 
 public class OrderService
 {
-	internal static void NewOrder()
-	{
-		List<OrderProd> orderProd = new();
+    internal static void NewOrder()
+    {
+        List<OrderProd> orderProd = new();
 
-		var coffeeList = CoffeeController.GetAllCoffees();
-		var order = new Order { CreatedDate = DateTime.Now };
+        var coffeeList = CoffeeController.GetAllCoffees();
+        var order = new Order { CreatedDate = DateTime.Now };
 
-		bool choosingProducts = true;
-		while(choosingProducts)
-		{
-			var coffee = CoffeeInterface.CoffeeListMenu(coffeeList);
-			Console.WriteLine(coffee);
-			var productQuantity = AnsiConsole.Ask<int>("Product Quantity?: ");
-			
-			order.TotalAmount += coffee.Price * productQuantity;
+        bool choosingProducts = true;
+        while (choosingProducts)
+        {
+            var coffee = CoffeeInterface.CoffeeListMenu(coffeeList);
+            Console.WriteLine(coffee);
+            var productQuantity = AnsiConsole.Ask<int>("Product Quantity?: ");
 
-			orderProd.Add(
-				new OrderProd
-				{
-					Order = order,
-					CoffeeId = coffee.CoffeeId,
-					ProductQuantity = productQuantity
-				});
+            order.TotalAmount += coffee.Price * productQuantity;
 
-			choosingProducts = AnsiConsole.Confirm("Add more products? ");
-		}
+            orderProd.Add(
+                new OrderProd
+                {
+                    Order = order,
+                    CoffeeId = coffee.CoffeeId,
+                    ProductQuantity = productQuantity
+                });
 
-		if (OrderController.Add(orderProd) > 0)
-		{
-			Console.WriteLine("Order Details");
-			Console.WriteLine("OrderId: " + order.Id);
-			Console.WriteLine("Total Amount: " + order.TotalAmount);
+            choosingProducts = AnsiConsole.Confirm("Add more products? ");
         }
-		else
-			Console.WriteLine("Error");
 
-		//Thread.Sleep(800);
-		Console.ReadLine();
+        if (OrderController.Add(orderProd) > 0)
+        {
+            Console.WriteLine("Order Details");
+            Console.WriteLine("OrderId: " + order.Id);
+            Console.WriteLine("Total Amount: " + order.TotalAmount);
+        }
+        else
+            Console.WriteLine("Error");
 
-	}
+        //Thread.Sleep(800);
+        Console.ReadLine();
 
-	internal static void ViewOrders()
-	{
-        var orderId = AnsiConsole.Ask<int>("Order Id?: ");
+    }
+
+    internal static void ViewAllOrders()
+    {
+        var orders = OrderController.GetOrders();
+        OrderInterface.PrintOrderTable(orders);
+    }
+    internal static void ViewOrderById()
+    {
+        var orders = OrderController.GetOrders();
+        var order = OrderInterface.OrderMenuPickable(orders);
+        OrderInterface.ShowSingleOrderDetail(order);
+
+        /*var orderId = AnsiConsole.Ask<int>("Order Id?: ");
 		var order = OrderController.GetOrderById(orderId);
 		//OrderInterface.PrintOrderTable(orders);
 		Console.WriteLine(order);
-		Console.ReadLine();
-	}
+		Console.ReadLine();*/
+    }
 
+    internal static void RemoveOrder()
+    {
+        var orders = OrderController.GetOrders();
+        var order = OrderInterface.OrderMenuPickable(orders);
+        var status = OrderController.RemoveOrder(order);
+        if (status > 0)
+            Console.WriteLine("Order Succefully deleted");
+        else
+            Console.WriteLine("Something went Wrong");
+
+        Console.Write("Press any Key to continue");
+        Console.Read();
+    }
 }

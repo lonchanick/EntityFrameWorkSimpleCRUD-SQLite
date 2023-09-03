@@ -40,6 +40,7 @@ internal class CoffeeInterface
 
 		return option;
 	}
+
 	//shows a single coffe details in a pretty way
 	public static void ShowSingleCoffeeDetails(Product coffee, string optional = "", bool newCoffee = false)
 	{
@@ -82,15 +83,6 @@ Is Coffee of the month?: {coffee.IsCoffeeOfTheMonth}");
 			Console.ReadLine();
 		}
 
-		/*if (optional == "")
-			panel.Header = new PanelHeader("Coffee Details");
-		else
-			panel.Header = new PanelHeader(optional);
-
-		panel.Padding = new Padding(1, 1, 1, 1);
-		AnsiConsole.Write(panel);
-		Console.WriteLine("Press any key to continue ...");
-		Console.ReadLine();*/
 	}
 
 	public static Product UpdateInterface(Product coffeeToUpdate)
@@ -110,7 +102,7 @@ Is Coffee of the month?: {coffee.IsCoffeeOfTheMonth}");
 
 
 		coffeeToUpdate.CategoryId = AnsiConsole.Confirm("Wanna Update Category? ")
-			? CategoryMenuPickable().categoryId
+			? CategoryInterface.CategoryMenuPickable().categoryId
 			: coffeeToUpdate.CategoryId;
 
 		return coffeeToUpdate;
@@ -127,19 +119,13 @@ Is Coffee of the month?: {coffee.IsCoffeeOfTheMonth}");
 			: false
 		};
 		//coffee.CategoryId = 1;
-		var category = CategoryMenuPickable();
+		var category = CategoryInterface.CategoryMenuPickable();
 		coffee.CategoryId = category.categoryId;
 		//coffee.Category = category;
 
 		return coffee;
 	}
 
-	public static Category CategoryMenuPickable()
-	{
-		var categories = CategoryController.GetCategories();
-		var category = CategoryInterface.CategoryPickableMenuOptions(categories);
-
-		return category;
-	}
+	
 
 }

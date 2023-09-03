@@ -12,21 +12,22 @@ public class Order
 
     public override string ToString()
     {
-		var sb = new StringBuilder();
-		sb.Append("\tOrder Details\n");
-		sb.Append($"OrderId: {Id}\n");
-        sb.Append($"CreatedDate: {CreatedDate}\n");
-		sb.Append($"TotalAmount: {TotalAmount}\n");
-		sb.Append("");
+		//var sb = new StringBuilder();
+		//sb.Append("\tOrder Details\n");
+		//sb.Append($"{Id} - {CreatedDate.ToString("dd-MM-yyyy")}");
+		//sb.Append($"CreatedDate: {CreatedDate}\n");
+		//sb.Append($"TotalAmount: {TotalAmount}\n");
+		//sb.Append("");
 
-        /*sb.Append("\tProducts");
+		/*sb.Append("\tProducts");
         foreach (var ord in OrderProd)
 		{
             sb.Append($"Product: {ord.CoffeeId}");
             sb.Append($"Quantity: {ord.ProductQuantity}");
 			sb.Append("");
         }*/
-        return sb.ToString();
+		//return sb.ToString();
+		return $"{Id} - {CreatedDate:dd-MM-yyyy}";
     }
 
 }
