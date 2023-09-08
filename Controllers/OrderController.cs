@@ -48,25 +48,21 @@ public class OrderController
 
         return orderDetailed;
     }
-    internal static IQueryable GetOrdersDetailById(int id)
+    internal static Order GetOrdersDetailById(int id)
     {
         using var db = new CoffeeDBcontext();
+        var order = db.Orders.FirstOrDefault(or => or.Id == id);
 
-        //quedaste en el video #16
-        //esto no funciona utiliza los DTO (data transfer object) para recuperar los orderprod y los prod
-        /*var results =
-            from order in db.Orders
-            join orderProd in db.OrderProds on order.Id equals orderProd.OrderId
-            where order.Id == id
-            select new { Orderx = order, OrderProdx=orderProd};*/
-            
+        //en esta var podemos ver que si retorna la order junto con las orderProds
+        //solo faltarian checar que retorne los productos 
+        var result = (from o in db.Orders
+                     where o.Id == id
+                     select o).Include(op => op.OrderProd)
+                     .ThenInclude(p=>p.Coffee);
+                     
+        //la pregunta ahora es que tipo esta retornando y como accedo a estos datos
 
-            /*.ThenInclude(o => o.OrderProd)
-            .ThenInclude(coffee => coffee.Coffee)
-            .ThenInclude(cat => cat.Category)
-            .ToList();*/
-
-        return results;
+        return new Order { };
     }
 
 }
