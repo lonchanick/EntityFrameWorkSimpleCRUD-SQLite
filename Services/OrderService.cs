@@ -34,6 +34,7 @@ public class OrderService
             choosingProducts = AnsiConsole.Confirm("Add more products? ");
         }
         //Thread.Sleep(800);
+        OrderController.Add(orderProd);
         Console.Write("Press any Key to continue");
         Console.Read();
 
