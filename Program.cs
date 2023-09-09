@@ -1,7 +1,5 @@
-﻿using PlayingSpectre.Controllers;
-using PlayingSpectre.Menu;
-using PlayingSpectre.UserInterfaces;
+﻿using PlayingSpectre.Menu;
 
-//Main.MainMenu();
-var r = OrderController.GetOrdersDetailById(4);
+Main.MainMenu();
+
 

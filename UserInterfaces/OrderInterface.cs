@@ -38,7 +38,7 @@ public class OrderInterface
     {
 		var panel = new Panel(
 $@"Id: {order.Id}
-Init Date: {order.CreatedDate}
+Init Date: {order.CreatedDate:d}
 Total Amount: {order.TotalAmount}");
 
         panel.Header = new PanelHeader("Order Details");
@@ -46,7 +46,28 @@ Total Amount: {order.TotalAmount}");
         panel.Padding = new Padding(1, 1, 1, 1);
 
         AnsiConsole.Write(panel);
-        Console.WriteLine("Press any key to continue ...");
-        Console.Read();
     }
+
+    internal static void PrintOrderProdTable(Order order)
+    {
+        var table = new Table();
+        table.AddColumn("Id");
+        table.AddColumn("Product");
+        table.AddColumn("Price");
+        table.AddColumn("Quantity");
+
+        foreach (var orderProd in order.OrderProd)
+        {
+            table.AddRow
+                (orderProd.Id.ToString(),
+                orderProd.Coffee.Name,
+                orderProd.Coffee.Price.ToString(),
+                orderProd.ProductQuantity.ToString());
+        }
+
+        AnsiConsole.Write(table);
+        
+    }
+
+
 }

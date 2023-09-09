@@ -33,18 +33,9 @@ public class OrderService
 
             choosingProducts = AnsiConsole.Confirm("Add more products? ");
         }
-
-        if (OrderController.Add(orderProd) > 0)
-        {
-            Console.WriteLine("Order Details");
-            Console.WriteLine("OrderId: " + order.Id);
-            Console.WriteLine("Total Amount: " + order.TotalAmount);
-        }
-        else
-            Console.WriteLine("Error");
-
         //Thread.Sleep(800);
-        Console.ReadLine();
+        Console.Write("Press any Key to continue");
+        Console.Read();
 
     }
 
@@ -53,11 +44,17 @@ public class OrderService
         var orders = OrderController.GetOrders();
         OrderInterface.PrintOrderTable(orders);
     }
+
     internal static void ViewOrderById()
     {
         var orders = OrderController.GetOrders();
         var order = OrderInterface.OrderMenuPickable(orders);
         OrderInterface.ShowSingleOrderDetail(order);
+        var orderDetailed = OrderController.GetOrderDetailedById(order.Id);
+        OrderInterface.PrintOrderProdTable(orderDetailed);
+
+        Console.Write("Press any Key to continue");
+        Console.Read();
 
         /*var orderId = AnsiConsole.Ask<int>("Order Id?: ");
 		var order = OrderController.GetOrderById(orderId);
