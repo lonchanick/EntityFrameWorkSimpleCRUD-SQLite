@@ -54,8 +54,7 @@ internal class CoffeeController
     {
         if (status > 0)
         {
-            Console.Clear();
-            //esto es true si es para imprimir un cafe nuevo que se esta guardando
+            //Console.Clear();
             CoffeeInterface.ShowSingleCoffeeDetails(coffee, message, true);
         }
         else
